@@ -1,6 +1,8 @@
 import json
 import os
 
+from setuptools.dist import sequence
+
 # get current working directory path
 cwd_path = os.getcwd()
 
@@ -25,7 +27,17 @@ def main():
     file_name = 'sequential.json'
 
     seq = read_data(file_name, field = 'unordered_numbers')
-    print(seq)
+
+    results = linear_search(seq, number = 0)
+
+    seq = read_data(file_name, field = 'dna_sequence')
+    pattern = 'ATA'
+
+    matches = pattern_search(seq, pattern)
+    seq = read_data(file_name, field = 'ordered_numbers')
+
+    number_x = binary_search(seq,number=14)
+
 
 if __name__ == '__main__':
     main()
@@ -45,3 +57,27 @@ def linear_search(seq,number):
         'positions': indices,
         'count': count,
     }
+
+def pattern_search(seq, pattern):
+    pattern_size = len(pattern)
+    indices = []
+    left_idx = 0
+    right_idx = pattern_size
+    while right_idx < len(seq):
+        for idx in range(pattern_size):
+            if pattern[idx] != seq[left_idx + idx]:
+                break
+        else:
+            indices.add(left_idx + pattern_size // 2)
+
+        left_idx += 1
+        right_idx += 1
+
+    return indices
+
+def binary_search(ordered_numbers, number):
+    for idx in range(binary_search):
+        if binary[idx] != number:
+
+            return None
+
