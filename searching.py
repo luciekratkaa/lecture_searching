@@ -23,25 +23,6 @@ def read_data(file_name, field):
         seq = json.load(json_file)
     return seq[field]
 
-def main():
-    file_name = 'sequential.json'
-
-    seq = read_data(file_name, field = 'unordered_numbers')
-
-    results = linear_search(seq, number = 0)
-
-    seq = read_data(file_name, field = 'dna_sequence')
-    pattern = 'ATA'
-
-    matches = pattern_search(seq, pattern)
-    seq = read_data(file_name, field = 'ordered_numbers')
-
-    number_x = binary_search(seq,number=14)
-
-
-if __name__ == '__main__':
-    main()
-
 def linear_search(seq,number):
     indices = []
     count = 0
@@ -75,9 +56,34 @@ def pattern_search(seq, pattern):
 
     return indices
 
-def binary_search(ordered_numbers, number):
-    for idx in range(binary_search):
-        if binary[idx] != number:
+def binary_search(seq, number):
+    left, right = (0, len(seq) - 1)
 
-            return None
+    while left <= right:
+        middle = (right + left) // 2
 
+        if number < seq[middle]:
+            right = middle -1
+        elif number > seq[middle]:
+            left = middle +1
+        else:
+            return middle
+    return
+
+def main():
+    file_name = 'sequential.json'
+
+    seq = read_data(file_name, field = 'unordered_numbers')
+
+    results = linear_search(seq, number = 0)
+
+    seq = read_data(file_name, field = 'dna_sequence')
+    pattern = 'ATA'
+
+    matches = pattern_search(seq, pattern)
+    seq = read_data(file_name, field = 'ordered_numbers')
+
+    number_x = binary_search(seq,number=14)
+
+if __name__ == '__main__':
+    main()
