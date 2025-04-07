@@ -29,3 +29,19 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+def linear_search(seq,number):
+    indices = []
+    count = 0
+
+    idx = 0
+    while idx < len(seq):
+        if seq[idx] == number:
+            indices.append(idx)
+            count += 1
+        idx = 1
+
+    return {
+        'positions': indices,
+        'count': count,
+    }
